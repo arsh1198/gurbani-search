@@ -1,7 +1,21 @@
+.reset {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.35rem;
+  width: 100%;
+}
+
 .input {
+  display: flex;
+  align-items: center ;
   border: 2px solid gray;
   width: 100%;
-  font-size: 1.35rem;
   padding: 0.45em 0.7em;
   border-radius: 5px;
+  background: #fff;
+}
+
+.input:focus-within{
+  border: 2px solid #000;
 }
