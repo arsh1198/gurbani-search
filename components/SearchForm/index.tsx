@@ -1,30 +1,21 @@
-import React, { useState } from 'react'
-import Button from '../core/Button'
-import Input from '../core/Input'
-import styles from './index.module.css'
-import { statusCodes, useApi } from '../../contexts/ApiContext'
+import React from "react";
+import Button from "../core/Button";
+import Input from "../core/Input";
+import styles from "./index.module.css";
 
-const SearchForm = () => {
-  const { searchShabad, status } = useApi()
-  const [query, setQuery] = useState('')
-
-  const handleSubmit = (e:React.FormEvent) => {
-    e.preventDefault()
-    searchShabad(query)
-  }
-
+const SearchForm = ({ query, setQuery, loading }) => {
   return (
-    <form className={styles.formContainer} onSubmit={handleSubmit}>
+    <form className={styles.formContainer}>
       <Input
-        loading={status === statusCodes.PENDING}
+        loading={loading}
         value={query}
-        onChange={e => setQuery(e.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
       />
-      <Button disabled={query === ''} type='submit'>
+      <Button disabled={query === ""} type="submit">
         Search
       </Button>
     </form>
-  )
-}
+  );
+};
 
-export default SearchForm
+export default SearchForm;

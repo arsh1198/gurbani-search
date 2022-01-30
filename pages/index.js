@@ -1,15 +1,18 @@
+import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ShabadList from "../components/ShabadList";
-import { useApi } from "../contexts/ApiContext";
+import useShabads from "../hooks/use-shabads";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
-  const { searchResults } = useApi();
+  const [query, setQuery] = useState("");
+  const { data, isLoading } = useShabads(query);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <SearchForm />
-        <ShabadList shabads={searchResults.shabads} />
+        <SearchForm query={query} setQuery={setQuery} loading={isLoading} />
+        <ShabadList shabads={data?.shabads} />
       </main>
     </div>
   );
